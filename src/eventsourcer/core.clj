@@ -7,7 +7,7 @@
 
 (defn taillog [file numlines]
 	(with-open [rdr (reader file)]
-		(println (->> (line-seq rdr) (map #(clojure.string/split % #" "))))))
+		(pprint (->> (line-seq rdr) (take numlines) (map #(clojure.string/split % #"[ ][ ]*"))))))
 
-;(println (taillog "/var/log/kernel.log" 50))
-(pprint (taillog "/etc/passwd" 50))
+(taillog "/var/log/kernel.log" 50)
+;(pprint (taillog "/etc/passwd" 2))
